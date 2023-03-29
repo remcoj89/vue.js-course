@@ -10,3 +10,38 @@ input[type="text"]{
 [v-cloak] {
   display:none;
 }
+
+.change-color{
+  margin-top: 4rem;
+}
+
+.circle {
+  background-color: rgb(0, 250, 0);
+  margin-top: 2rem;
+  color:white;
+  font-weight: 900;
+  text-align: center;
+  line-height: 150px;
+  font-size: 2em;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.purple {
+  background-color: rgb(190, 3, 190);
+}
+
+.blue {
+  background-color: blue;
+}
+
+.text-orange {
+  color: orange;
+}
+.text-black {
+  color: black;
+}

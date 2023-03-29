@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,25 +8,90 @@
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div id="app" v-cloak>
-    <h1>Hello {{ fullName() }}</h1>
+    <h1>Hello {{ fullName }}</h1>
+    <p>{{age}}</p>
     <p><a v-bind:href="url" target="_blank">Link to my site</a></p>
-    <p v-html="raw_url"></p>
     <hr>
 
     <label>First Name</label>
-    <input type="text" v-model="firstName">
+    <input type="text" v-model.lazy.trim="firstName">
+
+    <label>Middle Name</label>
+    <input type="text" @keyup.enter="updateMiddleName">
 
     <label>Last Name</label>
-    <input type="text" v-model="lastName">
-  </div>
+    <input type="text" v-model.lazy.trim="lastName">
 
-  <!-- <div id="app2">
-    <h1>Hello {{firstName}}</h1>
-  </div> -->
+    <label>Age</label><br>
+    <input type="number" v-model.number="age"> <br>
+
+    <button type="button" @click="increment">Increment</button>
+    <button type="button" v-on:click="age--">Decrement</button>
+    <!-- Door ctrl toe te voegen aan het click event werkt dit event alleen wanneer de ctrl toets is ingedrukt -->
+    <!-- <button type="button" v-on:click.ctrl="age--">Decrement</button> -->
+
+    <p v-if="mode == 1">Showing v- if directive content</p>
+    <template v-else-if="mode == 2">
+      <p>Bonus code: Using template ipv div</p>
+      <p>Showing v-else-if</p>
+    </template>
+    <p v-else>Showing else</p>
+
+    <i v-show="mode == 1">V-show</i><br>
+
+    <select v-model="mode">
+      <option value="1">Mode 1</option>
+      <option value="2">Mode 2</option>
+      <option value="3">Else mode</option>
+    </select>
+
+    <div class="change-color">
+      <label>
+        <input type="checkbox" v-model="isPurple" /> Purple
+      </label> <br>
+      <label>
+        <input type="checkbox" v-model="isBlue" /> Blue
+      </label><br>
+      <input type="number" v-model.lazy="size"><br>
+
+      <select v-model="selectedColor">
+        <option value="">white</option>
+        <option value="text-black">black</option>
+        <option value="text-orange">orange</option>
+      </select>
+
+      <div :class="[circle, selectedColor, circle_classes]" :style="[circleSize, transform]">
+        Hi!
+      </div>
+    </div>
+
+    <!-- Array of items -->
+    <ul>
+      <li v-for="(item, index) in items" :class="item" key="item">
+        {{index}} {{item}}
+      </li>
+    </ul>
+    <hr>
+    <!-- Array with objecs -->
+    <ul>
+      <li v-for="item in itemsObjects">
+        {{item.restaurant}}
+      </li>
+    </ul>
+    <hr>
+    <!-- Array with objecs and index-->
+    <ul>
+      <li v-for="(item, index) in itemsObjects">
+        {{item.restaurant}} - {{index + 1}}
+      </li>
+    </ul>
+  </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="app.js"></script>
 </body>
+
 </html>
